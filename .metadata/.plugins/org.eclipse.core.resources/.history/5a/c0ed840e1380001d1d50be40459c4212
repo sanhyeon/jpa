@@ -1,0 +1,13 @@
+package com.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name="board")
+public class Board {
+	// 멤버변수
+}

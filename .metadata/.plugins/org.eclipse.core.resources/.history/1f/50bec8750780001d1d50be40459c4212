@@ -1,0 +1,35 @@
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
+import com.domain.EmpVO;
+
+public class EmpSelectMain {
+
+	public static void main(String[] args) {
+		 EntityManagerFactory emf = Persistence.createEntityManagerFactory("bContextState");
+	      EntityManager em = emf.createEntityManager();
+	      EntityTransaction tx = em.getTransaction();
+	      
+	      try {
+	    	  // [1] find()
+	    	  EmpVO emp1 = em.find(EmpVO.class, 1299);
+	    	  //System.out.println("검색결과:"+emp1);
+	    	
+	    	  // [2] getReference() 예외 값이 뜸
+	    	  EmpVO emp2 = em.getReference(EmpVO.class, 1299);
+	    	  System.out.println("검색결과:"+emp2);
+	    	  
+	    	  
+	      }catch (Exception e) {
+	          System.out.println("예외 : " + e.getMessage());
+	      }finally {
+	    	  tx.commit();
+	          em.close();
+	      
+
+	      }
+
+	}
+}
